@@ -3,14 +3,24 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { HeaderComponent } from './partials/header/header.component';
+import { ChartsComponent } from './dashboard/charts/charts.component';
+import { TitleComponent } from './partials/title/title.component';
+import { UserTableComponent } from './dashboard/user-table/user-table.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DashboardComponent,
+    HeaderComponent,
+    ChartsComponent,
+    TitleComponent,
+    UserTableComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

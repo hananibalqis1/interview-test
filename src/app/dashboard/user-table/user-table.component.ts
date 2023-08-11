@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Data } from 'src/app/models/Data';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-user-table',
@@ -6,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-table.component.scss']
 })
 export class UserTableComponent implements OnInit{
+  allData: Data[] = [];
 
-  constructor(){}
+  constructor(private tableService: DataService ){
+    this.allData = this.tableService.getData();
+  }
+
   ngOnInit(): void {
+
   }
 
 }

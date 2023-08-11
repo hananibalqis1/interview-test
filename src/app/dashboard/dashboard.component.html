@@ -1,19 +1,15 @@
 <div class="container" style="margin-top: 30px">
   <app-title title="Overview"></app-title>
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-6" *ngFor="let chart of charts">
       <div class="card">
         <h5 class="card-header">Card Title</h5>
         <div class="card-body">
-          <app-charts></app-charts>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6">
-      <div class="card">
-        <h5 class="card-header">Card Title</h5>
-        <div class="card-body">
-          <app-charts></app-charts>
+          {{chart}}
+          <app-charts
+            (pieChart)="pieChart($event)"
+            (barChart)="barChart($event)">
+          </app-charts>
         </div>
       </div>
     </div>

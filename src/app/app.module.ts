@@ -8,6 +8,7 @@ import { HeaderComponent } from './partials/header/header.component';
 import { ChartsComponent } from './dashboard/charts/charts.component';
 import { TitleComponent } from './partials/title/title.component';
 import { UserTableComponent } from './dashboard/user-table/user-table.component';
+import { LoginComponent } from './login-page/login/login.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { UserTableComponent } from './dashboard/user-table/user-table.component'
     HeaderComponent,
     ChartsComponent,
     TitleComponent,
-    UserTableComponent
+    UserTableComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

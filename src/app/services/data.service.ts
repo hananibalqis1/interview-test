@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { sample_data } from '../data';
+import { sample_data } from '../constants/data';
 import { Data } from '../models/Data';
 
 @Injectable({

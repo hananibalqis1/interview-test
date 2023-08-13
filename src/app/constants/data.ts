@@ -1,4 +1,4 @@
-import { Data } from "./models/Data";
+import { Data } from "../models/Data";
 
 export const sample_data: Data[] = [
   { id: 1, firstName: 'Mark', lastName: 'Otto', username: '@mdo' },

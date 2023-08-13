@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,9 +12,10 @@ export class DashboardComponent implements OnInit{
   chart1: any;
   chart2: any;
 
-  constructor(){}
+  constructor(private userService: UserService){}
 
   ngOnInit(): void {
+    this.userService.dashboard();
   }
 
   pieChart(pie: any){

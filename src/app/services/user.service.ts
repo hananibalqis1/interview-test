@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Data, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -23,4 +23,15 @@ export class UserService {
     return localStorage.getItem('token');
   }
 
+  dashboard(){
+    let headers = new HttpHeaders().set("Authorization", `Bearer ${this.getToken()}`);
+
+    this.http.get(`${baseUrl}dashboard`, {headers})
+      .subscribe((res: any) => {
+    });
+  }
+
+  logout(){
+    localStorage.removeItem('token');
+  }
 }

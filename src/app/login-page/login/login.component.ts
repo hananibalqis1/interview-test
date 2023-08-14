@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
+import { ToastrService } from 'ngx-toastr';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,8 @@ export class LoginComponent implements OnInit{
 
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private toastrService: ToastrService
   ){}
 
   ngOnInit(): void {
@@ -26,9 +28,9 @@ export class LoginComponent implements OnInit{
   onSubmit(){
     if(this.loginForm.invalid) return;
 
-    this.userService.login(this.loginForm.value).subscribe(res => {
-      const token = res;
-      this.userService.setToken(token);
-    })
+    this.userService.login({
+      username: this.loginForm.value.username,
+      password: this.loginForm.value.password
+    });
   }
 }

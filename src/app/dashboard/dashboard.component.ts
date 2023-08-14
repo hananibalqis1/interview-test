@@ -7,25 +7,13 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit{
-  charts = ['pieChart', 'barChart'];
 
-  chart1: any;
-  chart2: any;
-
-  constructor(private userService: UserService){}
+  constructor(){}
 
   ngOnInit(): void {
-    this.userService.dashboard();
   }
 
-  pieChart(pie: any){
-    this.chart1 = pie;
-    console.log("received pie chart");
+  get chartControl(){
+    return
   }
-
-  barChart(bar: any){
-    this.chart2 = bar;
-    console.log("received bar chart");
-  }
-
 }

@@ -8,8 +8,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let d of allData">
-      <th scope="row">{{d.id}}</th>
+    <tr *ngFor="let d of tableData; let i = index">
+      <td scope="row">{{i+1}}</td>
       <td>{{d.firstName}}</td>
       <td>{{d.lastName}}</td>
       <td>{{d.username}}</td>

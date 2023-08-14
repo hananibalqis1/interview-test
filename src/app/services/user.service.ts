@@ -1,18 +1,37 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Data, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { baseUrl } from 'src/environments/environment';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { baseUrl } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  constructor(private http: HttpClient, private router: Router) { }
 
-  login(data: any): Observable<any>{
-    this.router.navigate(['/dashboard']);
-    return this.http.post(`${baseUrl}account/login`, data);
+  userValue = [];
+
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private toastrService: ToastrService
+  ) { }
+
+  login(data: any){
+    this.http.post(`${baseUrl}account/login`, data)
+    .subscribe((res: any) => {
+      localStorage.setItem('token', res);
+      this.router.navigate(['/dashboard']);
+      this.toastrService.success(
+        'Login successful.',
+        'Welcome!'
+      )
+    }, (err) => {
+      this.toastrService.error(
+        'Login failed!', err
+      )
+    });
+
   }
 
   setToken(token: string): void{
@@ -23,15 +42,16 @@ export class UserService {
     return localStorage.getItem('token');
   }
 
-  dashboard(){
-    let headers = new HttpHeaders().set("Authorization", `Bearer ${this.getToken()}`);
-
-    this.http.get(`${baseUrl}dashboard`, {headers})
-      .subscribe((res: any) => {
-    });
+  get user(){
+    return this.userValue;
   }
 
   logout(){
     localStorage.removeItem('token');
+    this.toastrService.info(
+      'See you again.',
+      'Successfully logged out!'
+    );
+    this.router.navigate(['/login']);
   }
 }

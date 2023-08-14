@@ -37,7 +37,7 @@ export class ChartsComponent implements OnInit {
       })
 
       this.pieChart = this.pieData;
-      this.tableFirst(this.pieChart);
+      this.pieChartDiagram(this.pieChart);
     });
 
     //Bar Chart
@@ -50,11 +50,11 @@ export class ChartsComponent implements OnInit {
       })
 
       this.barChart = this.barData;
-      this.tableSecond(this.barChart);
+      this.barChartDiagram(this.barChart);
     });
   }
 
-  tableFirst(pieChart: any){
+  pieChartDiagram(pieChart: any){
     let chart = am4core.create("pieChartdiv", am4charts.PieChart);
     chart.data = pieChart;
 
@@ -69,7 +69,7 @@ export class ChartsComponent implements OnInit {
     pieSeries.slices.template.tooltipText = "";
   }
 
-  tableSecond(barChart: any){
+  barChartDiagram(barChart: any){
     let chart = am4core.create("barChartdiv", am4charts.XYChart);
     chart.data = barChart;
 

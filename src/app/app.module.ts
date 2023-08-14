@@ -8,10 +8,10 @@ import { HeaderComponent } from './partials/header/header.component';
 import { ChartsComponent } from './dashboard/charts/charts.component';
 import { TitleComponent } from './partials/title/title.component';
 import { UserTableComponent } from './dashboard/user-table/user-table.component';
-import { LoginComponent } from './login-page/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [

@@ -2,6 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import { DataService } from 'src/app/services/data.service';
+import am4themes_animated from '@amcharts/amcharts4/themes/animated';
+
+am4core.useTheme(am4themes_animated);
+am4core.options.commercialLicense = true;
 
 export interface Charts{
   name: string;
@@ -27,7 +31,6 @@ export class ChartsComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-    //Pie Chart
     this.dataService.getDashboardData().subscribe((res) => {
       this.chartValue = res;
 
@@ -36,18 +39,13 @@ export class ChartsComponent implements OnInit {
         this.pieData.push(data);
       })
 
-      this.pieChart = this.pieData;
-      this.pieChartDiagram(this.pieChart);
-    });
-
-    //Bar Chart
-    this.dataService.getDashboardData().subscribe((res) => {
-      this.chartValue = res;
-
       this.chartValue.chartBar.forEach((d: Charts) => {
         let data = {name: d.name, value: d.value};
         this.barData.push(data);
       })
+
+      this.pieChart = this.pieData;
+      this.pieChartDiagram(this.pieChart);
 
       this.barChart = this.barData;
       this.barChartDiagram(this.barChart);
@@ -67,6 +65,14 @@ export class ChartsComponent implements OnInit {
     pieSeries.labels.template.disabled = true;
     pieSeries.ticks.template.disabled = true;
     pieSeries.slices.template.tooltipText = "";
+
+    pieSeries.colors.list = [
+      am4core.color("#CACFD2"),
+      am4core.color("#626567"),
+      am4core.color("#909497"),
+      am4core.color("#A6ACAF")
+    ];
+
   }
 
   barChartDiagram(barChart: any){
@@ -77,10 +83,10 @@ export class ChartsComponent implements OnInit {
     categoryAxis.dataFields.category = "name";
     categoryAxis.renderer.grid.template.location = 0;
     categoryAxis.renderer.minGridDistance = 30;
-    categoryAxis.renderer.line.strokeOpacity = 1;
+    categoryAxis.renderer.line.strokeOpacity = 0.5;
 
     let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-    valueAxis.renderer.line.strokeOpacity = 1;
+    valueAxis.renderer.line.strokeOpacity = 0.5;
     let series = chart.series.push(new am4charts.ColumnSeries());
 
     series.xAxis.renderer.labels.template.disabled = true;
@@ -93,11 +99,12 @@ export class ChartsComponent implements OnInit {
 
     series.columns.template.tooltipText = "";
     series.columns.template.fillOpacity = .8;
+    series.columns.template.fill = am4core.color("#909497");
+    series.stroke = am4core.color("#909497");
 
     let columnTemplate = series.columns.template;
     columnTemplate.strokeWidth = 2;
     columnTemplate.strokeOpacity = 1;
-
   }
 
 }

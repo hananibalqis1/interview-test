@@ -1,10 +1,13 @@
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <ul class="navbar-nav" >
+  <ul class="navbar-nav text-align-center">
     <li class="nav-item">
       <a class="nav-link" routerLink="/dashboard">Dashboard</a>
+
     </li>
     <li class="nav-item" style="position:absolute; right: 0;">
-      <a class="nav-link mx-2" routerLink="/login" (click)="onLogout()">Sign Out</a>
+      <a class="nav-link mx-2" routerLink="/login" (click)="onLogout()" style="display: flex; align-items: center;">
+        <mat-icon>exit_to_app</mat-icon> &nbsp; Sign Out
+      </a>
     </li>
   </ul>
 </nav>

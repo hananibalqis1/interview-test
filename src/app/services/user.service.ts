@@ -54,4 +54,8 @@ export class UserService {
     );
     this.router.navigate(['/login']);
   }
+
+  public isLoggedIn(): boolean {
+    return !!localStorage.getItem('token');
+  }
 }

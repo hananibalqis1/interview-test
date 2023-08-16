@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import { DataService } from 'src/app/services/data.service';
@@ -17,39 +17,21 @@ export interface Charts{
   templateUrl: './charts.component.html',
   styleUrls: ['./charts.component.scss']
 })
-export class ChartsComponent implements OnInit {
+export class ChartsComponent implements OnInit, OnChanges {
 
   pieData: Charts[] = [];
   barData: Charts[] = [];
-  chartValue: any;
 
-  public pieChart: any;
-  public barChart: any;
+  @Input() getPieData: any;
+  @Input() getBarData: any;
 
-  constructor(
-    private dataService: DataService
-  ){}
+  constructor(){}
 
-  ngOnInit(): void {
-    this.dataService.getDashboardData().subscribe((res) => {
-      this.chartValue = res;
+  ngOnInit(): void {}
 
-      this.chartValue.chartDonut.forEach((d: Charts) => {
-        let data = {name: d.name, value: d.value};
-        this.pieData.push(data);
-      })
-
-      this.chartValue.chartBar.forEach((d: Charts) => {
-        let data = {name: d.name, value: d.value};
-        this.barData.push(data);
-      })
-
-      this.pieChart = this.pieData;
-      this.pieChartDiagram(this.pieChart);
-
-      this.barChart = this.barData;
-      this.barChartDiagram(this.barChart);
-    });
+  ngOnChanges(){
+    this.pieChartDiagram(this.getPieData);
+    this.barChartDiagram(this.getBarData);
   }
 
   pieChartDiagram(pieChart: any){

@@ -28,7 +28,8 @@ export class UserService {
       )
     }, (err) => {
       this.toastrService.error(
-        'Login failed!', err
+        'Login failed!',
+        'Please try again'
       )
     });
 
